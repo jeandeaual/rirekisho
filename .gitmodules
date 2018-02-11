@@ -1,0 +1,3 @@
+[submodule "rireki-style"]
+	path = rireki-style
+	url = https://github.com/shigio/rireki-style

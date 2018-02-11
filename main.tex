@@ -1,10 +1,11 @@
 % !TEX program = xelatex
 
-\documentclass[a4]{article}
-\usepackage{xltxtra} % Extra customizations for XeLaTeX;
+\documentclass{article}
+\usepackage[b5paper]{geometry}
+\usepackage{rireki-style/rireki}
+\usepackage{xltxtra} % Extra customizations for XeLaTeX
 \usepackage{fontspec}
 \usepackage{xunicode}
-\usepackage{rireki}
 \usepackage{xeCJK}
 
 \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase} % to support TeX conventions like ‘‘---’’
@@ -14,14 +15,6 @@
 \setCJKsansfont{AozoraMinchoLight.ttf}
 \setCJKmonofont{AozoraMinchoLight.ttf}
 
-%
-% オプション
-%
-% 下記のオプションが利用可能です。
-%
-% \空行挿入		% 学歴と職歴の間に空行を挿入します
-\toA4			% A4用紙にB5 のトンボ付きで出力します
-%			(履歴書のフォーマットはB5サイズ固定です)
 \begin{document}
 
 %
@@ -34,6 +27,8 @@
 \性別{男}
 \誕生日{平成2年7月2日}
 \年齢{27}
+
+\顔写真{}
 
 %
 % 現住所
