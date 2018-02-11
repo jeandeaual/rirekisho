@@ -1,19 +1,27 @@
 % !TEX program = xelatex
 
 \documentclass{article}
+% Force B5 PDF generation
 \usepackage[b5paper]{geometry}
+% Import from the submodule
 \usepackage{rireki-style/rireki}
-\usepackage{xltxtra} % Extra customizations for XeLaTeX
+% Extra customizations for XeLaTeX
+\usepackage{xltxtra}
 \usepackage{fontspec}
 \usepackage{xunicode}
 \usepackage{xeCJK}
 
-\defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase} % to support TeX conventions like ‘‘---’’
+% To support TeX conventions like "---"
+\defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
 \XeTeXlinebreaklocale "ja" % chktex 1 chktex 18
 \setmainfont{AozoraMinchoRegular.ttf}
 \setCJKmainfont{AozoraMinchoRegular.ttf}
 \setCJKsansfont{AozoraMinchoLight.ttf}
 \setCJKmonofont{AozoraMinchoLight.ttf}
+
+% Redefine the date of today in japanese, in order to display
+% XXXX年XX月XX日現在on top of the first page
+\renewcommand{\today}{\the\year{}年\the\month{}月\the\day{}日}
 
 \begin{document}
 
