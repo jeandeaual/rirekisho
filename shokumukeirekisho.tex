@@ -1,0 +1,245 @@
+% !TEX program = xelatex
+
+\documentclass[11pt,a4paper]{moderncv}
+
+% moderncv theme
+% Style options are 'casual' (default), 'classic', 'oldstyle' and 'banking'
+\moderncvstyle{classic}
+% Color options 'blue' (default), 'orange', 'green', 'red', 'purple', 'grey'
+% and 'black'
+\moderncvcolor{black}
+% To set the default font; use '\sfdefault' for the default sans serif font,
+% '\rmdefault' for the default roman one, or any tex font name
+%\renewcommand{\familydefault}{\sfdefault}
+% Uncomment to suppress automatic page numbering for CVs longer than one page
+%\nopagenumbers{}
+
+\usepackage{xpatch}
+% Patch the \cventry command so that it doesn't use italics
+\xpatchcmd{\cventry}{\slshape#4}{#4}{}{}
+% Remove the comma in between the job title / degree
+% and the institution / employer
+\xpatchcmd\cventry{,}{}{}{}
+% Remove the period after the institution / employer
+\xpatchcmd\cventry{.}{}{}{}
+
+% Adjust the page margins
+\usepackage[scale=0.85]{geometry}
+
+\ifnum0\ifxetex1\fi\ifluatex1\fi=0 % if pdftex
+    \usepackage[T1]{fontenc}
+    \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+    \ifxetex%
+        \usepackage{mathspec}
+        % Extra customizations for XeLaTeX
+        \usepackage{xltxtra}
+        \usepackage{fontspec}
+        \usepackage{xunicode}
+        \usepackage{xeCJK}
+        \usepackage{ifxetex,ifluatex}
+        \usepackage{fixltx2e} % provides \textsubscript
+
+        % To support TeX conventions like "---"
+        \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+        \XeTeXlinebreaklocale "ja" % chktex 1 chktex 18
+        \setmainfont[BoldFont=AozoraMinchoHeavy.ttf]{AozoraMinchoRegular.ttf}
+        \setCJKmainfont[BoldFont=AozoraMinchoHeavy.ttf]{AozoraMinchoRegular.ttf}
+        \setCJKsansfont{AozoraMinchoLight.ttf}
+        \setCJKmonofont{AozoraMinchoLight.ttf}
+    \else
+        \usepackage{fontspec}
+    \fi
+    %\setmainfont[
+    %    Ligatures=TeX,
+    %    Scale=MatchLowercase,
+    %    BoldFont=SourceSansPro-Semibold.otf,
+    %    ItalicFont=SourceSansPro-LightIt.otf,
+    %    BoldItalicFont=SourceSansPro-SemiboldIt.otf]{SourceSansPro-Light.otf}
+    %\usepackage{polyglossia}
+    %\setdefaultlanguage{english}
+    %\setotherlanguage{french}
+\fi
+
+\usepackage[CJK,overlap]{ruby}
+\usepackage{setspace}
+% See https://nablux.net/tgp/weblog/2013/03/22/how-typeset-japanese-using-xelatex/
+% Increase line space for Furigana
+\onehalfspacing%
+
+% Redefine the date of today in Japanese, in order to display
+% XXXX年XX月XX日現在on top of the first page
+\renewcommand{\today}{\the\year{}年\the\month{}月\the\day{}日}
+
+% Default for the "classic" style: marvosym
+% "awesome" is the default in the "banking", "casual" and "classic" styles
+\moderncvicons{awesome}
+
+% Personal data
+% \name{Jeandeau}{Alexis}
+\lineskiplimit=5pt
+\name{\ruby{Jeandeau}{ジャンドー}}{\ruby{Alexis}{アレクシ}}
+\lineskiplimit=1pt
+% Optional
+\title{職務経歴書}
+% Optional
+% The "postcode city" and "country" arguments can be omitted or provided empty
+%\address{}{}{}
+
+\ifdefined\withphoto%
+    % optional
+    % '64pt' is the height the picture must be resized to,
+    % 0.4pt is the thickness of the frame around it (put it to 0pt for no frame)
+    % and 'picture' is the name of the picture file
+    \photo[64pt][0.2pt]{photo.jpg}
+\fi
+
+% Technologies / protocols
+\newcommand{\techno}{\emph}
+% Languages / libraries
+\newcommand{\lang}{\emph}
+
+\AfterPreamble{\hypersetup{
+%     pdfcreator     = {\LaTeX{} with 'moderncv' package},
+%     pdfproducer    = {\LaTeX{}}, % will/should be set automatically to the correct TeX engine used
+%     bookmarksopen  = true,
+%     bookmarksdepth = 2, % to show sections and subsections
+    pdfauthor      = {Alexis~Jeandeau},
+    pdftitle       = {Alexis~Jeandeau -- 職務経歴書},
+    pdfsubject     = {Alexis~Jeandeau -- 職務経歴書},
+    pdfkeywords    = {Alexis~Jeandeau, 職務経歴書}
+}}
+
+%-------------------------------------------------------------------------------
+%            content
+%-------------------------------------------------------------------------------
+
+\begin{document}
+
+\makecvtitle%
+
+% Reduce the length of the left column (used for the employment dates)
+\setlength{\hintscolumnwidth}{1cm}
+
+\section{職務経歴}
+
+\subsection{\underline{2016年04月〜　株式会社Z-Works}}
+
+\cventry{}{}{•介護者むけのIoTプロットフォームのバックエンド開発}{}{}{%
+\begin{itemize}
+\item[] 【プロジェクト内容】
+    \begin{itemize}
+        \item ErlangやJavaを使ってIoTのデバイスとユーザを管理するシステムの開発
+        \item AMQP（RabbitMQ）通信APIの実装
+        \item Bitbucket Pipelines、AWS CodeDeployと複数のAmazonサービスでCI/CDの設定
+    \end{itemize}
+\item[] 【技術】
+    \begin{description}
+        \item \lang{Erlang}, \lang{Java}, \techno{AMQP}, \techno{Z-Wave}, \techno{\href{http://www.linear.com/products/smartmesh_ip}{Dust Networks SmartMesh IP}}, \techno{PostgreSQL}
+    \end{description}
+% \item[] 【担当フェーズ】
+%     \begin{description}
+%         \item 開発、単体テスト
+%     \end{description}
+\end{itemize}
+}
+\cventry{}{}{•サポートエンジニア向けの管理インターフェスの開発}{}{}{%
+\begin{itemize}
+\item[] 【プロジェクト内容】
+    \begin{itemize}
+        \item AWSのサービスを使ってREST APIの作成
+    \end{itemize}
+\item[] 【技術】
+    \begin{description}
+        \item \lang{Java}, \href{https://aws.amazon.com/api-gateway/}{Amazon API Gateway}, \href{https://aws.amazon.com/lambda/}{AWS Lambda}
+    \end{description}
+% \item[] 【担当フェーズ】
+%     \begin{description}
+%         \item 詳細設計、開発、単体テスト
+%     \end{description}
+\end{itemize}
+}
+
+\vspace*{1em}
+
+\subsection{\underline{2012年05月〜2016年04月　タカハシ技研合同会社}}
+
+\cventry{}{}{•イベント用のリアルタイム写真閲覧と管理サービス}{}{}{%
+\begin{itemize}
+\item[] 【プロジェクト内容】
+    \begin{itemize}
+        \item バックエンドとREST APIの設計
+        \item フロントエンドの国際化（日本語・英語）
+    \end{itemize}
+\item[] 【技術】
+    \begin{description}
+        \item \lang{Go}, \lang{JavaScript}, \techno{WebSocket}, \techno{PostgreSQL}, \techno{L20n}
+    \end{description}
+% \item[] 【担当フェーズ】
+%     \begin{description}
+%         \item 詳細設計、開発、単体テスト
+%     \end{description}
+\end{itemize}
+}
+\vspace*{1em}
+\cventry{}{}{• LTE-A (4G) のネットワークテストツールの開発}{}{}{%
+\begin{itemize}
+\item[] 【プロジェクト内容】
+    \begin{itemize}
+        \item 複数のネットワークプロトコルの負荷テストテストモジュールの作成\newline{（HTTP, FTP, ICMP, SIP, RTP）}
+    \end{itemize}
+\item[] 【技術】
+    \begin{description}
+        \item \lang{C++}, \techno{Boost}
+    \end{description}
+% \item[] 【担当フェーズ】
+%     \begin{description}
+%         \item 開発、単体テスト
+%     \end{description}
+\end{itemize}
+}
+\vspace*{1em}
+\cventry{}{}{•フェリカ（FeliCa）カードを利用する勤怠管理システムの開発}{}{}{%
+\begin{itemize}
+\item[] 【プロジェクト内容】
+    \begin{itemize}
+        \item 出勤簿閲覧などのウェッブインターフェースの開発
+        \item フロントエンドの国際化（日本語・英語・フランス語）
+    \end{itemize}
+\item[] 【技術】
+    \begin{description}
+        \item \lang{Python}, \lang{JavaScript}, \techno{PostgreSQL}, \techno{NFC}
+    \end{description}
+% \item[] 【担当フェーズ】
+%     \begin{description}
+%         \item 詳細設計、開発、単体テスト
+%     \end{description}
+\end{itemize}
+}
+
+\clearpage
+
+% Increase the length of the left column (used for the employment dates)
+\setlength{\hintscolumnwidth}{2.3cm}
+
+\section{言語}
+\cvitemwithcomment{日本語}{中級者 -- 2012年に日本語能力試験２級を取得}{}
+\cvitemwithcomment{英語}{上級者}{}
+\cvitemwithcomment{フランス語}{母語}{}
+
+\vspace*{1em}
+
+\section{スキル}
+\subsection{プログラミング言語}
+\cvitem{一般}{\lang{C}, \lang{C++}, \lang{Java}}
+\cvitem{サーバ}{\lang{Erlang}, \lang{Python}, \lang{Ruby}, \lang{Go}, \lang{Node.js}}
+\subsection{技術}
+\cvitem{OS}{\techno{RHEL}, \techno{CentOS}, \techno{Debian}, \techno{Ubuntu}}
+\cvitem{データベース}{\techno{Amazon RDS}, \techno{PostgreSQL}, \techno{MySQL}}
+\cvitem{モバイル}{\techno{Android}, \lang{Kotlin}}
+\cvitem{通信プロトコル}{\techno{AMQP}, \techno{MQTT}, \techno{XMPP}}
+\cvitem{プロジェクト管理}{\techno{Jira}, \techno{Redmine}}
+\cvitem{CI/CD}{\techno{Bitbucket Pipelines}, \techno{AWS CodeDeploy}, \techno{Jenkins}}
+\cvitem{バージョン管理\newline{}システム}{\techno{Git}, \techno{Mercurial}, \techno{Subversion}}
+
+\end{document}
