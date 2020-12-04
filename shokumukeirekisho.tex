@@ -8,11 +8,6 @@
 % Color options 'blue' (default), 'orange', 'green', 'red', 'purple', 'grey'
 % and 'black'
 \moderncvcolor{black}
-% To set the default font; use '\sfdefault' for the default sans serif font,
-% '\rmdefault' for the default roman one, or any tex font name
-%\renewcommand{\familydefault}{\sfdefault}
-% Uncomment to suppress automatic page numbering for CVs longer than one page
-%\nopagenumbers{}
 
 \usepackage{xpatch}
 % Patch the \cventry command so that it doesn't use italics
@@ -23,43 +18,22 @@
 % Remove the period after the institution / employer
 \xpatchcmd\cventry{.}{}{}{}
 
+\usepackage[deluxe,nfssonly]{luatexja-preset}
+
 % Adjust the page margins
 \usepackage[scale=0.85]{geometry}
+\usepackage{microtype}
 
-\ifnum0\ifxetex1\fi\ifluatex1\fi=0 % if pdftex
-    \usepackage[T1]{fontenc}
-    \usepackage[utf8]{inputenc}
-\else % if luatex or xelatex
-    \ifxetex%
-        \usepackage{mathspec}
-        % Extra customizations for XeLaTeX
-        \usepackage{xltxtra}
-        \usepackage{fontspec}
-        \usepackage{xunicode}
-        \usepackage{xeCJK}
-        \usepackage{ifxetex,ifluatex}
-        \usepackage{fixltx2e} % provides \textsubscript
-
-        % To support TeX conventions like "---"
-        \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
-        \XeTeXlinebreaklocale "ja" % chktex 1 chktex 18
-        \setmainfont[BoldFont=AozoraMinchoHeavy.ttf]{AozoraMinchoRegular.ttf}
-        \setCJKmainfont[BoldFont=AozoraMinchoHeavy.ttf]{AozoraMinchoRegular.ttf}
-        \setCJKsansfont{AozoraMinchoLight.ttf}
-        \setCJKmonofont{AozoraMinchoLight.ttf}
-    \else
-        \usepackage{fontspec}
-    \fi
-    %\setmainfont[
-    %    Ligatures=TeX,
-    %    Scale=MatchLowercase,
-    %    BoldFont=SourceSansPro-Semibold.otf,
-    %    ItalicFont=SourceSansPro-LightIt.otf,
-    %    BoldItalicFont=SourceSansPro-SemiboldIt.otf]{SourceSansPro-Light.otf}
-    %\usepackage{polyglossia}
-    %\setdefaultlanguage{english}
-    %\setotherlanguage{french}
-\fi
+\usepackage{fontspec}
+\setmainfont[
+    Ligatures=TeX,
+    Scale=MatchLowercase,
+    BoldFont=SourceSansPro-Semibold.otf,
+    ItalicFont=SourceSansPro-LightIt.otf,
+    BoldItalicFont=SourceSansPro-SemiboldIt.otf]{SourceSansPro-Light.otf}
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\setotherlanguage{french}
 
 \usepackage[CJK,overlap]{ruby}
 \usepackage{setspace}
@@ -76,18 +50,12 @@
 \moderncvicons{awesome}
 
 % Personal data
-% \name{Jeandeau}{Alexis}
 \lineskiplimit=5pt
 \name{\ruby{Jeandeau}{ジャンドー}}{\ruby{Alexis}{アレクシ}}
 \lineskiplimit=1pt
-% Optional
 \title{職務経歴書}
-% Optional
-% The "postcode city" and "country" arguments can be omitted or provided empty
-%\address{}{}{}
 
 \ifdefined\withphoto%
-    % optional
     % '64pt' is the height the picture must be resized to,
     % 0.4pt is the thickness of the frame around it (put it to 0pt for no frame)
     % and 'picture' is the name of the picture file
@@ -97,13 +65,10 @@
 % Technologies / protocols
 \newcommand{\techno}{\emph}
 % Languages / libraries
-\newcommand{\lang}{\emph}
+\renewcommand{\lang}{\emph}
 
 \AfterPreamble{\hypersetup{
-%     pdfcreator     = {\LaTeX{} with 'moderncv' package},
-%     pdfproducer    = {\LaTeX{}}, % will/should be set automatically to the correct TeX engine used
-%     bookmarksopen  = true,
-%     bookmarksdepth = 2, % to show sections and subsections
+    pdfcreator     = {\LaTeX{}},
     pdfauthor      = {Alexis~Jeandeau},
     pdftitle       = {Alexis~Jeandeau -- 職務経歴書},
     pdfsubject     = {Alexis~Jeandeau -- 職務経歴書},
@@ -125,9 +90,6 @@
 
 \subsection{\underline{2019年9月〜　株式会社ティアフォー}}
 
-%
-
-\subsection{\underline{2016年4月〜2019年8月　株式会社Z-Works}}
 \cventry{}{}{•技術本部所属　Webエンジニア}{}{}{%
 \begin{itemize}
 \item[] 【プロジェクト内容】
@@ -142,6 +104,11 @@
     \end{description}
 \end{itemize}
 }
+
+\vspace*{1em}
+
+\subsection{\underline{2016年4月〜2019年8月　株式会社Z-Works}}
+
 \cventry{}{}{•介護者むけのIoTプロットフォームのバックエンド開発}{}{}{%
 \begin{itemize}
 \item[] 【プロジェクト内容】
@@ -154,10 +121,6 @@
     \begin{description}
         \item \lang{Erlang}, \lang{Java}, \techno{AMQP}, \techno{Z-Wave}, \techno{\href{http://www.linear.com/products/smartmesh_ip}{Dust Networks SmartMesh IP}}, \techno{PostgreSQL}
     \end{description}
-% \item[] 【担当フェーズ】
-%     \begin{description}
-%         \item 開発、単体テスト
-%     \end{description}
 \end{itemize}
 }
 \cventry{}{}{•サポートエンジニア向けの管理インターフェスの開発}{}{}{%
@@ -170,10 +133,6 @@
     \begin{description}
         \item \lang{Java}, \href{https://aws.amazon.com/api-gateway/}{Amazon API Gateway}, \href{https://aws.amazon.com/lambda/}{AWS Lambda}
     \end{description}
-% \item[] 【担当フェーズ】
-%     \begin{description}
-%         \item 詳細設計、開発、単体テスト
-%     \end{description}
 \end{itemize}
 }
 
@@ -192,14 +151,10 @@
     \begin{description}
         \item \lang{Go}, \lang{JavaScript}, \techno{WebSocket}, \techno{PostgreSQL}, \techno{L20n}
     \end{description}
-% \item[] 【担当フェーズ】
-%     \begin{description}
-%         \item 詳細設計、開発、単体テスト
-%     \end{description}
 \end{itemize}
 }
 \vspace*{1em}
-\cventry{}{}{• LTE-A (4G) のネットワークテストツールの開発}{}{}{%
+\cventry{}{}{•LTE-A (4G) のネットワークテストツールの開発}{}{}{%
 \begin{itemize}
 \item[] 【プロジェクト内容】
     \begin{itemize}
@@ -209,10 +164,6 @@
     \begin{description}
         \item \lang{C++}, \techno{Boost}
     \end{description}
-% \item[] 【担当フェーズ】
-%     \begin{description}
-%         \item 開発、単体テスト
-%     \end{description}
 \end{itemize}
 }
 \vspace*{1em}
@@ -227,14 +178,8 @@
     \begin{description}
         \item \lang{Python}, \lang{JavaScript}, \techno{PostgreSQL}, \techno{NFC}
     \end{description}
-% \item[] 【担当フェーズ】
-%     \begin{description}
-%         \item 詳細設計、開発、単体テスト
-%     \end{description}
 \end{itemize}
 }
-
-\clearpage
 
 % Increase the length of the left column (used for the employment dates)
 \setlength{\hintscolumnwidth}{2.3cm}
