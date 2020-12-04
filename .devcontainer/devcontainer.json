@@ -1,0 +1,17 @@
+{
+    "name": "LaTeX",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    // Set *default* container specific settings.json values on container create.
+    "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash"
+    },
+    // Add the IDs of extensions you want installed when the container is created.
+    // Note that some extensions may not work in Alpine Linux. See https://aka.ms/vscode-remote/linux.
+    "extensions": [
+        "james-yu.latex-workshop"
+    ],
+    // Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+    "remoteUser": "vscode"
+}
