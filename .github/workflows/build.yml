@@ -14,11 +14,13 @@ jobs:
           run: latexmk
       - name: Clean the build directory
         run: find build ! -name '*.pdf' -type f -exec sudo rm -f {} +
+      - name: Add a prefix to each PDF
+        run : find build -name '*.pdf' -type f -exec bash -c 'mv {} $(dirname {})/alexis_jeandeau_$(basename {})' \;
       - name: Get short SHA
         id: slug
         run: echo "::set-output name=sha7::$(echo ${GITHUB_SHA} | cut -c1-7)"
       - name: Upload
         uses: actions/upload-artifact@v1.0.0
         with:
-          name: rirekisho-${{ steps.slug.outputs.sha7 }}
+          name: alexis_jeandeau_rirekisho_${{ steps.slug.outputs.sha7 }}
           path: build
