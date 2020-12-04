@@ -3,15 +3,11 @@
 % See rireki-style/rireki.tex
 \newif\iflualatex
 \lualatextrue
-\iflualatex
 \documentclass[b5j]{ltjsarticle}
 \usepackage[ScaleRM=1.1,nomath]{libertinus-otf}
 \usepackage[deluxe,nfssonly]{luatexja-preset}
 \usepackage{graphicx}
-\else
-\documentclass[uplatex,b5j]{jsarticle}
-\usepackage[dvipdfmx]{graphicx}
-\fi
+
 % Import from the submodule
 \usepackage{rireki-style/rireki}
 
@@ -42,9 +38,9 @@
 \年齢{30}
 
 \ifdefined\withphoto%
-\顔写真{photo.jpg}
+    \顔写真{photo.jpg}
 \else
-\顔写真{}
+    \顔写真{}
 \fi
 
 %
@@ -75,10 +71,10 @@
 % 印刷順は、学歴=>職歴の順になります。
 %
 %\学歴{2001}{6}{École primaire d'Arc-sur-Tille　小学校　卒業}
-\学歴{2005}{6}{Collège Champollion （中学校）　卒業}
-\学歴{2005}{9}{Lycée Carnot （高等学校）　入学}
-\学歴{2006}{9}{Lycée le Castel （高等学校）　編入}
-\学歴{2008}{6}{Lycée le Castel （高等学校）　卒業}
+%\学歴{2005}{6}{Collège Champollion （中学校）　卒業}
+%\学歴{2005}{9}{Lycée Carnot （高等学校）　入学}
+%\学歴{2006}{9}{Lycée le Castel （高等学校）　編入}
+%\学歴{2008}{6}{Lycée le Castel （高等学校）　卒業}
 \学歴{2008}{9}{IUT de Dijon （国立、コンピューター科学）　専門学校　入学}
 \職歴{2010}{4}{CEA Valduc　３ヶ月のインターンシップ}
 \学歴{2010}{6}{IUT de Dijon （国立、コンピューター科学）　専門学校　卒業}
@@ -109,8 +105,7 @@
 \志望の動機{
     別紙　職務履歴書をご参照ください
 }
-\本人希望記入欄{
-}
+\本人希望記入欄{}
 
 %
 % その他
@@ -120,7 +115,6 @@
 \配偶者{なし}
 \配偶者の扶養義務{なし}
 
-% \サイン{A. Jeandeau}
 \サイン{}
 
 \end{document}
