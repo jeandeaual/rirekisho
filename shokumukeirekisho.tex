@@ -63,11 +63,14 @@
 \fi
 
 % Technologies / protocols
-\newcommand{\techno}{\emph}
+\providecommand{\techno}{}
+\renewcommand{\techno}{\emph}
 % Languages / libraries
+\providecommand{\lang}{}
 \renewcommand{\lang}{\emph}
 
 \AfterPreamble{\hypersetup{
+    % pdfcreator     = {\LaTeX{} with 'moderncv' package},
     pdfcreator     = {\LaTeX{}},
     pdfauthor      = {Alexis~Jeandeau},
     pdftitle       = {Alexis~Jeandeau -- 職務経歴書},
@@ -75,9 +78,9 @@
     pdfkeywords    = {Alexis~Jeandeau, 職務経歴書}
 }}
 
-%-------------------------------------------------------------------------------
-%            content
-%-------------------------------------------------------------------------------
+%
+% Content
+%
 
 \begin{document}
 
