@@ -1,28 +1,20 @@
-% !TEX program = xelatex
+% !TEX program = lualatex
 
-\documentclass{article}
-% Force B5 PDF generation
-\usepackage[b5paper]{geometry}
+% See rireki-style/rireki.tex
+\newif\iflualatex
+\lualatextrue
+\iflualatex
+\documentclass[b5j]{ltjsarticle}
+\usepackage[deluxe,nfssonly]{luatexja-preset}
+\usepackage{graphicx}
+\else
+\documentclass[uplatex,b5j]{jsarticle}
+\usepackage[dvipdfmx]{graphicx}
+\fi
 % Import from the submodule
 \usepackage{rireki-style/rireki}
-% Extra customizations for XeLaTeX
-\usepackage{xltxtra}
-\usepackage{fontspec}
-\usepackage{xunicode}
-\usepackage{xeCJK}
-\usepackage{CJKulem}
 
-% To support TeX conventions like "---"
-\defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
-\XeTeXlinebreaklocale "ja" % chktex 1 chktex 18
-\setmainfont{AozoraMinchoRegular.ttf}
-\setCJKmainfont{AozoraMinchoRegular.ttf}
-\setCJKsansfont{AozoraMinchoLight.ttf}
-\setCJKmonofont{AozoraMinchoLight.ttf}
-
-% Redefine the date of today in Japanese, in order to display
-% XXXX年XX月XX日現在on top of the first page
-\renewcommand{\today}{\the\year{}年\the\month{}月\the\day{}日}
+\空行挿入 % 学歴と職歴の間に空行を挿入します
 
 \begin{document}
 
@@ -34,8 +26,9 @@
 \姓読み{ジャンドー}
 \名読み{アレクシ}
 \性別{男}
-\誕生日{平成2年7月2日}
-\年齢{29}
+\誕生日{2020年7月2日}
+\現在日付{\the\year{}年\the\month{}月\the\day{}日}
+\年齢{30}
 
 \ifdefined\withphoto%
 \顔写真{photo.jpg}
@@ -105,34 +98,18 @@
 % 志望の動機と本人希望記入欄はlatex のコマンドを記述できます。
 %
 \志望の動機{
-    % \begin{tabular}{ll}
-    %     { 志望の動機} & ∞∞∞∞∞∞ \\
-    %     { 特技} & フランス語、英語 \\
-    %     { アピールポイント} & ∞∞∞∞∞∞ \\
-    % \end{tabular}
-    現在Erlangを使ってIoTプラットフォームのサーバサイド開発に携わっていますが、
-    ゲーム開発、特にオンライン \newline ゲームについてはずっと興味をもっています。 \\
-    貴社では常に新しい技術を採用して大勢の人に利用されているゲームを作っている点に魅力を感じております。 \\
-    現在Elixirを勉強中であり、貴社では本言語を使用したソフトウェアを開発しているとお聞きしました。 \\
-    私も是非自分の知識や経験を活かしながらその一員として開発に参加できればと考えております。
+    別紙　職務履歴書をご参照ください
 }
 \本人希望記入欄{
-    % 私が希望する仕事の条件は下記の通りです。
-    \begin{itemize}
-        \item サーバサイドエンジニアを希望いたします。
-        \item 現在就業中のため、平日10～19時はお電話に出られない場合があります。 \\
-            折り返しご連絡いたしますので、恐れ入りますが留守番電話にメッセージを残していただけると幸いです。
-        % \item 貴社の規定に従います
-    \end{itemize}
 }
 
 %
 % その他
 %
 \通勤時間{約 40分}
-\扶養家族数{0}          % 人数(配偶者を除きます)
-\配偶者{なし}           % あり|なし
-\配偶者の扶養義務{なし} % あり|なし
+\扶養家族数{0}
+\配偶者{なし}
+\配偶者の扶養義務{なし}
 
 % \サイン{A. Jeandeau}
 \サイン{}
