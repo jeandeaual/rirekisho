@@ -23,7 +23,7 @@ jobs:
       - name: Clean the build directory
         run: find build ! -name '*.pdf' -type f -exec sudo rm -f {} +
       - name: Add a prefix to each PDF
-        run : find build -name '*.pdf' -type f -exec bash -c 'mv {} $(dirname {})/alexis_jeandeau_$(basename {})' \;
+        run : find build -name '*.pdf' -type f -exec bash -c 'sudo mv {} $(dirname {})/alexis_jeandeau_$(basename {})' \;
       - name: Get short SHA
         id: slug
         run: echo "::set-output name=sha7::$(echo ${GITHUB_SHA} | cut -c1-7)"
