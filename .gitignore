@@ -1,3 +1,5 @@
+build/
+
 ### Windows ###
 # Windows image file caches
 Thumbs.db
@@ -159,4 +161,5 @@ flycheck_*.el
 *.lol
 *.pdf
 *.sta
+*.ltjruby
 _minted-*/

@@ -15,4 +15,7 @@ if ($^O eq 'linux') {
     $pdf_previewer = "start %S";
 }
 
-$clean_ext .= ' synctex.gz(busy)';
+push @generated_exts, "synctex.gz(busy)";
+push @generated_exts, "xmpdata";
+
+$clean_ext .= ' synctex.gz(busy) xmpdata';

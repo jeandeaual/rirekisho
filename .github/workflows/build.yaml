@@ -3,9 +3,21 @@ on:
   pull_request:
     branches:
       - master
+    paths:
+      - "**.tex"
+      - "**.jpg"
+      - .gitmodules
+      - .latexmkrc
+      - .github/workflows/build.yml
   push:
     branches:
       - master
+    paths:
+      - "**.tex"
+      - "**.jpg"
+      - .gitmodules
+      - .latexmkrc
+      - .github/workflows/build.yml
   workflow_dispatch:
     inputs: {}
 jobs:
@@ -13,13 +25,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           submodules: true
       - name: Compile
         uses: xu-cheng/texlive-action/full@v1
         with:
-          run: latexmk
+          run: make
       - name: Clean the build directory
         run: find build ! -name '*.pdf' -type f -exec sudo rm -f {} +
       - name: Add a prefix to each PDF
@@ -28,12 +40,12 @@ jobs:
         id: slug
         run: echo "::set-output name=sha7::$(echo ${GITHUB_SHA} | cut -c1-7)"
       - name: Upload
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: alexis_jeandeau_rirekisho_${{ steps.slug.outputs.sha7 }}
           path: build
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@4.1.3
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
           folder: build
