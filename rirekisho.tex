@@ -13,10 +13,12 @@
 % See rireki-style/rireki.tex
 \newif\iflualatex
 \lualatextrue
+
 \documentclass[b5j]{ltjsarticle}
 \usepackage[ScaleRM=1.1,nomath]{libertinus-otf}
-\usepackage[deluxe,nfssonly]{luatexja-preset}
+\usepackage[haranoaji,match,no-math,deluxe]{luatexja-preset}
 \usepackage{graphicx}
+\usepackage{luacode}
 
 % Import from the submodule
 \usepackage{rireki-style/rireki}
@@ -25,12 +27,63 @@
 
 \usepackage{hyperref}
 
+\begin{luacode*}
+local function is_leap_year(year)
+  if math.fmod(year / 400, 1) == 0 then
+    return true
+  end
+
+  if math.fmod(year / 4, 1) == 0 and math.fmod(year / 100, 1) ~= 0 then
+    return true
+  end
+
+  return false
+end
+
+local YEAR_SECS = 365 * 24 * 3600
+local LEAP_YEAR_SECS = 366 * 24 * 3600
+
+function calc_age(current_year, current_month, current_day,
+                  birth_year, birth_month, birth_day)
+  local current = os.time {year = current_year, month = current_month, day = current_day}
+  local birth = os.time {year = birth_year, month = birth_month, day = birth_day}
+  local seconds = os.difftime(current, birth)
+  local years = 0
+
+  for year = birth_year, current_year do
+    if is_leap_year(year) then
+      seconds = seconds - LEAP_YEAR_SECS
+      years = years + 1
+      if seconds < YEAR_SECS then return years end
+    else
+      seconds = seconds - YEAR_SECS
+      years = years + 1
+      if is_leap_year(1 + 1) then
+        if seconds < LEAP_YEAR_SECS then return years end
+      else
+        if seconds < YEAR_SECS then return years end
+      end
+    end
+  end
+end
+\end{luacode*}
+
+\newcommand{\calcage}[6]{\directlua{tex.write(calc_age(#1, #2, #3, #4, #5, #6))}}
+
+\newcommand\firstname{Alexis}
+\newcommand\firstnamekana{アレクシ}
+\newcommand\lastname{Jeandeau}
+\newcommand\lastnamekana{ジャンドー}
+\newcommand\birthyear{1990}
+\newcommand\birthmonth{7}
+\newcommand\birthday{2}
+
 \AfterPreamble{\hypersetup{
     pdfcreator     = {\LaTeX{}},
-    pdfauthor      = {Alexis~Jeandeau},
-    pdftitle       = {Alexis~Jeandeau -- 履歴書},
-    pdfsubject     = {Alexis~Jeandeau -- 履歴書},
-    pdfkeywords    = {Alexis~Jeandeau, 履歴書, cv, resume}
+    pdfauthor      = {\firstname{}~\lastname{}},
+    pdftitle       = {\firstname{}~\lastname{} -- 履歴書},
+    pdfsubject     = {\firstname{}~\lastname{} -- 履歴書},
+    pdfkeywords    = {\firstname{}~\lastname{}, \lastnamekana{}・\firstnamekana{}, 履歴書, cv, resume}
 }}
 
 \begin{document}
@@ -38,14 +91,14 @@
 %
 % ID情報
 %
-\姓{Jeandeau}
-\名{Alexis}
-\姓読み{ジャンドー}
-\名読み{アレクシ}
+\姓{\lastname}
+\名{\firstname}
+\姓読み{\lastnamekana}
+\名読み{\firstnamekana}
 \性別{男}
-\誕生日{1990年7月2日}
+\誕生日{\birthyear{}年\birthmonth{}月\birthday{}日}
 \現在日付{\the\year{}年\the\month{}月\the\day{}日}
-\年齢{30}
+\年齢{\calcage{\the\year}{\the\month}{\the\day}{\birthyear}{\birthmonth}{\birthday}}
 
 \ifdefined\withphoto%
     \顔写真{photo.jpg}

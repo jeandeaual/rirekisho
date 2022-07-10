@@ -28,22 +28,22 @@
 % Remove the period after the institution / employer
 \xpatchcmd\cventry{.}{}{}{}
 
-\usepackage[deluxe,nfssonly]{luatexja-preset}
+\usepackage[ScaleRM=1.1,nomath]{libertinus-otf}
+\usepackage[haranoaji,match,no-math,deluxe]{luatexja-preset}
+\usepackage{ruby}
+\usepackage{setspace}
+% See https://nablux.net/tgp/weblog/2013/03/22/how-typeset-japanese-using-xelatex/
+% Increase line space for Furigana
+\onehalfspacing%
 
 % Adjust the page margins
 \usepackage[scale=0.9]{geometry}
 \usepackage{microtype}
 
-\usepackage[ScaleRM=1.1,nomath]{libertinus-otf}
 \usepackage{polyglossia}
-\setdefaultlanguage{english}
-\setotherlanguage{french}
+\setdefaultlanguage{japanese}
+\setotherlanguage{english}
 
-\usepackage[CJK,overlap]{ruby}
-\usepackage{setspace}
-% See https://nablux.net/tgp/weblog/2013/03/22/how-typeset-japanese-using-xelatex/
-% Increase line space for Furigana
-\onehalfspacing%
 
 % Redefine the date of today in Japanese, in order to display
 % XXXX年XX月XX日現在on top of the first page
@@ -53,9 +53,14 @@
 % "awesome" is the default in the "banking", "casual" and "classic" styles
 \moderncvicons{awesome}
 
+\newcommand\firstnametext{Alexis}  % \firstname will be defined by moderncv
+\newcommand\firstnamekana{アレクシ}
+\newcommand\lastnametext{Jeandeau}  % \lastname will be defined by moderncv
+\newcommand\lastnamekana{ジャンドー}
+
 % Personal data
 \lineskiplimit=5pt
-\name{\ruby{Jeandeau}{ジャンドー}}{\ruby{Alexis}{アレクシ}}
+\name{\ruby{\lastnametext}{\lastnamekana}}{\ruby{\firstnametext}{\firstnamekana}}
 \lineskiplimit=1pt
 \title{職務経歴書}
 
@@ -74,12 +79,11 @@
 \renewcommand{\lang}{\emph}
 
 \AfterPreamble{\hypersetup{
-    % pdfcreator     = {\LaTeX{} with 'moderncv' package},
     pdfcreator     = {\LaTeX{}},
-    pdfauthor      = {Alexis~Jeandeau},
-    pdftitle       = {Alexis~Jeandeau -- 職務経歴書},
-    pdfsubject     = {Alexis~Jeandeau -- 職務経歴書},
-    pdfkeywords    = {Alexis~Jeandeau, 職務経歴書}
+    pdfauthor      = {\firstnametext{}~\lastnametext{}},
+    pdftitle       = {\firstnametext{}~\lastnametext{} -- 職務経歴書},
+    pdfsubject     = {\firstnametext{}~\lastnametext{} -- 職務経歴書},
+    pdfkeywords    = {\firstnametext{}~\lastnametext{}, \lastnamekana{}・\firstnamekana{}, 職務経歴書}
 }}
 
 %
